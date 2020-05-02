@@ -1,7 +1,7 @@
 <div>
   <h3>{{ botName }}</h3>
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="tableDataSource">
+  <div id="tables" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
       <!-- Round Column -->
       <ng-container matColumnDef="round">
         <th mat-header-cell *matHeaderCellDef>Round</th>
