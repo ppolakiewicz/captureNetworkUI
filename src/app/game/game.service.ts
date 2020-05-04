@@ -18,7 +18,15 @@ export class GameService {
     return this.http.get<IRounds>(path);
   }
 
-  public map(dataSet: IRound[], botOrder: number): ITabRow[] {
+  public getFirstBotStats(dataSet: IRound[]): ITabRow[] {
+    return this.map(dataSet, 1);
+  }
+
+  public getSecondBotStats(dataSet: IRound[]): ITabRow[] {
+    return this.map(dataSet, 2);
+  }
+
+  private map(dataSet: IRound[], botOrder: number): ITabRow[] {
     let tabDataSet: ITabRow[] = [];
 
     dataSet.forEach((element) => {

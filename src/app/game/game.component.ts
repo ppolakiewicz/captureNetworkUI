@@ -32,8 +32,8 @@ export class GameComponent implements OnInit {
         this.bot1Name = data.ROUNDS[0].BOT_1.NAME;
         this.bot2Name = data.ROUNDS[0].BOT_2.NAME;
 
-        this.bot1Stats = this.service.map(data.ROUNDS, 1);
-        this.bot2Stats = this.service.map(data.ROUNDS, 2);
+        this.bot1Stats = this.service.getFirstBotStats(data.ROUNDS);
+        this.bot2Stats = this.service.getSecondBotStats(data.ROUNDS);
       })
     );
   }
