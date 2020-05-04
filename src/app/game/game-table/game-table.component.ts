@@ -1,8 +1,5 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { IRound } from '../interface/iround';
-import { GameTableService } from './game-table.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { Method } from '../interface/enums/method.enum';
-import { IRounds } from '../interface/irounds';
 
 export interface ITabRow {
   round: string;
@@ -12,32 +9,18 @@ export interface ITabRow {
   winner: boolean;
 }
 
-
 @Component({
   selector: 'app-game-table',
   templateUrl: './game-table.component.html',
-  styleUrls: ['./game-table.component.scss']
+  styleUrls: ['./game-table.component.scss'],
 })
 export class GameTableComponent implements OnInit {
+  @Input() dataSource: ITabRow[];
+  @Input() botName: string;
 
-  @Input() gameId: number;
-  @Input() botOrder: number;
-
-  public botName: string;
-  public tableDataSource: ITabRow[];
   public displayedColumns = ['round', 'time', 'points', 'used', 'winner'];
 
-  constructor(private service: GameTableService) { }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.service.getData(this.gameId).subscribe((data: IRounds) => {
-      this.botName = this.getBotName(data, this.botOrder);
-      this.tableDataSource = this.service.map(data.ROUNDS, this.botOrder);
-    });
-  }
-
-  public getBotName(rounds: IRounds, botId: number): string {
-    return botId == 1 ? rounds.ROUNDS[0].BOT_1.NAME : rounds.ROUNDS[0].BOT_2.NAME;
-  }
-
+  ngOnInit(): void {}
 }

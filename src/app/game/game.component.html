@@ -1,15 +1,15 @@
 <mat-grid-list [cols]="2">
   <mat-grid-tile>
     <app-game-table
-      [gameId]="gameId"
-      [botOrder]="1"
+      [dataSource]="bot1Stats"
+      [botName]="bot1Name"
       class="allTitle"
     ></app-game-table>
   </mat-grid-tile>
   <mat-grid-tile>
     <app-game-table
-      [gameId]="gameId"
-      [botOrder]="2"
+      [dataSource]="bot2Stats"
+      [botName]="bot2Name"
       class="allTitle"
     ></app-game-table>
   </mat-grid-tile>
