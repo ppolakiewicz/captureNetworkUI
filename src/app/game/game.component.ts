@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from './game.service';
-import { ITabRow } from './game-table/game-table.component';
-import { IRounds } from './interface/irounds';
+import { IGameRound } from './interfaces/igame-round';
 
 @Component({
   selector: 'app-game',
@@ -10,11 +9,17 @@ import { IRounds } from './interface/irounds';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  public bot1Stats: ITabRow[];
-  public bot2Stats: ITabRow[];
 
-  public bot1Name: string;
-  public bot2Name: string;
+  public dataSource: IGameRound[] = [];
+  public cols: any[] = [
+    { field: 'round', header: 'Round' },
+    { field: 'bot_1', subField: 'points', header: 'Points' },
+    { field: 'bot_1', subField: 'time', header: 'Time' },
+    { field: 'bot_1', subField: 'used', header: 'Used' },
+    { field: 'bot_2', subField: 'points', header: 'Points' },
+    { field: 'bot_2', subField: 'time', header: 'Time' },
+    { field: 'bot_2', subField: 'used', header: 'Used' }
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,13 +33,9 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) =>
-      this.service.getGameData(+params.get('id')).subscribe((data: IRounds) => {
-        this.bot1Name = data.ROUNDS[0].BOT_1.NAME;
-        this.bot2Name = data.ROUNDS[0].BOT_2.NAME;
-
-        this.bot1Stats = this.service.getFirstBotStats(data.ROUNDS);
-        this.bot2Stats = this.service.getSecondBotStats(data.ROUNDS);
-      })
+      this.service.getGameRounds(+params.get('id')).subscribe(
+        (data: IGameRound[]) => this.dataSource = data
+      )
     );
   }
 }

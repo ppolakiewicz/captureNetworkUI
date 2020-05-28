@@ -15,15 +15,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { MainMenuItemComponent } from './main-menu/main-menu-item/main-menu-item.component';
-import { GameTableComponent } from './game/game-table/game-table.component';
 import { GameComponent } from './game/game.component'
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainMenuComponent,
     MainMenuItemComponent,
-    GameTableComponent,
     GameComponent
   ],
   imports: [
@@ -39,7 +38,8 @@ import { GameComponent } from './game/game.component'
     MatTableModule,
     MatGridListModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

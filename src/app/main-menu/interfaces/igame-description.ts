@@ -1,9 +1,9 @@
-import { IBotDescription } from './ibot-description'
+import { IBotDescription } from './ibot-description';
 
 export interface IGameDescription {
-    GAME_ID: number;
-    BOT_1: IBotDescription;
-    BOT_2: IBotDescription;
-    ROUNDS: number;
-    DATE: Date;
+  game_id: number;
+  bot_1: IBotDescription;
+  bot_2: IBotDescription;
+  rounds: number;
+  date: Date;
 }

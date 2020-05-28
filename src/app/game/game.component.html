@@ -1,16 +1,18 @@
-<mat-grid-list [cols]="2">
-  <mat-grid-tile>
-    <app-game-table
-      [dataSource]="bot1Stats"
-      [botName]="bot1Name"
-      class="allTitle"
-    ></app-game-table>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <app-game-table
-      [dataSource]="bot2Stats"
-      [botName]="bot2Name"
-      class="allTitle"
-    ></app-game-table>
-  </mat-grid-tile>
-</mat-grid-list>
+<h3 *ngIf="dataSource.length > 0">Game history: {{dataSource[0].bot_1.name}} vs {{dataSource[0].bot_2.name}}</h3>
+<p-table [columns]="cols" [value]="dataSource">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                <div *ngIf="col.subField">{{rowData[col.field][col.subField]}}</div>
+                <div *ngIf="!col.subField">{{rowData[col.field]}}</div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
