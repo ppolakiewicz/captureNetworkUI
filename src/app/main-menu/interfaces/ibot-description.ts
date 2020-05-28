@@ -1,4 +1,4 @@
 export interface IBotDescription {
-    NAME: string;
-    POINTS: number;
+  name: string;
+  points: number;
 }
