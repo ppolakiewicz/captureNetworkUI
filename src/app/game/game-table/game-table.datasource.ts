@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { environment } from 'src/environments/environment';
-import { Inject } from '@angular/core';
 
 export class GameTableDataSource extends DataSource<IGameRound>{
 
@@ -18,6 +17,4 @@ export class GameTableDataSource extends DataSource<IGameRound>{
     }
 
     disconnect(collectionViewer: CollectionViewer): void { }
-
-
 }
