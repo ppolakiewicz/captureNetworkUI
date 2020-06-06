@@ -1,13 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Method } from '../interface/enums/method.enum';
 
-export interface ITabRow {
-  round: string;
-  time: number;
-  points: number;
-  used: Method;
-  winner: boolean;
-}
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { GameTableDataSource } from './game-table.datasource';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-game-table',
@@ -15,12 +10,14 @@ export interface ITabRow {
   styleUrls: ['./game-table.component.scss'],
 })
 export class GameTableComponent implements OnInit {
-  @Input() dataSource: ITabRow[];
-  @Input() botName: string;
 
-  public displayedColumns = ['round', 'time', 'points', 'used', 'winner'];
+  public dataSource: GameTableDataSource;
+  public displayedColumns: string[] = ['round', 'bot1_points', 'bot1_time', 'bot1_used', 'bot2_points', 'bot2_time', 'bot2_used'];
 
-  constructor() {}
+  constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe(params =>
+      this.dataSource = new GameTableDataSource(+params['id'], this.http))
+  }
 }
