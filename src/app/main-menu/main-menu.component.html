@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
 <mat-toolbar color="primary">
   <mat-toolbar-row>
@@ -14,14 +14,12 @@
     <mat-nav-list>
       <a mat-list-item [routerLink]="'/'"> Home </a>
       <app-main-menu-item mat-list-item *ngFor="let game of gameList" [gameDescription]="game"
-        [routerLink]="['/game', game.GAME_ID]">
+        [routerLink]="['/game', game.game_id]" [queryParams]="{bot1: game.bot_1.name, bot2: game.bot_2.name}">
       </app-main-menu-item>
-      <a mat-list-item (click)="sidenav.toggle()" mat-list-item>Close</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <div style="height: 88vh;">
-
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
