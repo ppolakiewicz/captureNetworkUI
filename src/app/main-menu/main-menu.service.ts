@@ -10,7 +10,7 @@ export class MainMenuService {
   constructor(private http: HttpClient) {}
 
   getGamesList() {
-    let path: string = environment.url + 'game_list.json';
+    const path: string = environment.url + 'game_list.json';
     return this.http.get<IGameDescription[]>(path);
   }
 }
