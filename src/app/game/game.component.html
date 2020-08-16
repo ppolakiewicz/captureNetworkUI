@@ -1,1 +1,8 @@
-<app-game-table></app-game-table>
+<app-game-table [gameId]="gameId"
+                [firstBotName]="firstBotName"
+                [secondBotName]="secondBotName">
+</app-game-table>
+<app-game-points-charts [gameId]="gameId"
+                        [firstBotName]="firstBotName"
+                        [secondBotName]="secondBotName">
+</app-game-points-charts>

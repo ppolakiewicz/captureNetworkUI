@@ -1,8 +1,6 @@
-
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { GameTableDataSource } from './game-table.datasource';
-import { ActivatedRoute } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {GameTableDataSource} from './game-table.datasource';
+import {GameService} from '../game.service';
 
 @Component({
   selector: 'app-game-table',
@@ -11,8 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GameTableComponent implements OnInit {
 
-  public firstBotName: string;
-  public secondBotName: string;
+  @Input()
+  firstBotName: string;
+  @Input()
+  secondBotName: string;
+  @Input()
+  gameId: number;
+
   public dataSource: GameTableDataSource;
   public displayedColumns: string[] = [
     'round',
@@ -20,16 +23,9 @@ export class GameTableComponent implements OnInit {
     'secondBot-bot2_points', 'secondBot-bot2_time', 'secondBot-bot2_used'
   ];
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private service: GameService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params =>
-      this.dataSource = new GameTableDataSource(+params.id, this.http)
-    );
-
-    this.route.queryParams.subscribe(params => {
-      this.firstBotName = params.bot1;
-      this.secondBotName = params.bot2;
-    });
+    this.dataSource = new GameTableDataSource(this.gameId, this.service);
   }
 }
