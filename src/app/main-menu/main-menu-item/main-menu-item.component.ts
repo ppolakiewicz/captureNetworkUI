@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IGameDescription } from '../interfaces/igame-description'
+import { IGameDescription } from '../interfaces/igame-description';
 
 @Component({
   selector: 'app-main-menu-item',

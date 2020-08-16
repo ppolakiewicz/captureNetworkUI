@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GameTableDataSource } from './game-table.datasource';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game-table',
@@ -24,12 +24,12 @@ export class GameTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params =>
-      this.dataSource = new GameTableDataSource(+params['id'], this.http)
+      this.dataSource = new GameTableDataSource(+params.id, this.http)
     );
 
     this.route.queryParams.subscribe(params => {
-      this.firstBotName = params['bot1'];
-      this.secondBotName = params['bot2'];
-    })
+      this.firstBotName = params.bot1;
+      this.secondBotName = params.bot2;
+    });
   }
 }
