@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -12,7 +12,9 @@ export class GameComponent implements OnInit {
   secondBotName: string;
   gameId: number;
 
-  constructor(private readonly route: ActivatedRoute) {
+  constructor(private readonly route: ActivatedRoute,
+              private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
