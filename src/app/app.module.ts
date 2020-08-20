@@ -17,6 +17,8 @@ import {MainMenuItemComponent} from './main-menu/main-menu-item/main-menu-item.c
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {MatCardModule} from '@angular/material/card';
 import {HomeComponent} from './home/home.component';
+import {ChartsModule} from 'ng2-charts';
+import { RoundWonByComponent } from './game/charts/round-won-by/round-won-by.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import {HomeComponent} from './home/home.component';
     MainMenuItemComponent,
     GameComponent,
     GameTableComponent,
-    HomeComponent
+    HomeComponent,
+    RoundWonByComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import {HomeComponent} from './home/home.component';
     MatButtonModule,
     MatTableModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

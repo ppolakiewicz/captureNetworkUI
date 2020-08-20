@@ -14,7 +14,7 @@ export class GameService {
   }
 
   getGameRounds(gameId: number): Observable<readonly IGameRound[]> {
-    const path: string = environment.url + `games/${gameId}/game_record.json`;
+    const path = `${environment.url}/games/${gameId}/game_record.json`;
     return this.httpClient.get<IGameRound[]>(path).pipe(share());
   }
 }
