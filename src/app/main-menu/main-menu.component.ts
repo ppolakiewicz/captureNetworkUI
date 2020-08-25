@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MainMenuService } from './main-menu.service';
-import { IGameDescription } from './interfaces/igame-description';
+import {Component, OnInit} from '@angular/core';
+import {MainMenuService} from './main-menu.service';
+import {IGameDescription} from './interfaces/igame-description';
 
 @Component({
   selector: 'app-main-menu',
@@ -8,13 +8,13 @@ import { IGameDescription } from './interfaces/igame-description';
   styleUrls: ['./main-menu.component.scss'],
 })
 export class MainMenuComponent implements OnInit {
+
   public gameList: IGameDescription[];
 
-  constructor(private menuService: MainMenuService) {}
+  constructor(private menuService: MainMenuService) {
+  }
 
   ngOnInit(): void {
-    this.menuService
-      .getGamesList()
-      .subscribe((data: IGameDescription[]) => (this.gameList = data));
+    this.menuService.getGamesList().subscribe(data => this.gameList = data);
   }
 }
