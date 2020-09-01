@@ -2,4 +2,15 @@
                 [firstBotName]="firstBotName"
                 [secondBotName]="secondBotName">
 </app-game-table>
-<app-round-won-by [gameId]="gameId"></app-round-won-by>
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <app-round-won-by [gameId]="gameId"></app-round-won-by>
+      </div>
+      <div class="col">
+        <app-round-lost-by [gameId]="gameId"></app-round-lost-by>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

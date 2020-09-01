@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
-import {WonWithMethods} from './charts.types';
+import {ChartData, WithMethods} from './charts.types';
+import {concatAll, skip} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import {WonWithMethods} from './charts.types';
 export class ChartService {
 
   private readonly WON_WITH_METHODS = 'won_with_methods.json';
+  private readonly LOST_WITH_METHODS = 'lost_with_methods.json';
 
   constructor(private readonly http: HttpClient) {
   }
@@ -18,7 +20,25 @@ export class ChartService {
     return `${environment.url}/games/${gameId}/stats`;
   }
 
-  getWonWithMethods(gameId: number): Observable<WonWithMethods[]> {
-    return this.http.get<WonWithMethods[]>(`${ChartService.getStatsPath(gameId)}/${this.WON_WITH_METHODS}`);
+  prepareWithMethodChartData(bot: WithMethods): ChartData {
+    const result: ChartData = {data: [], label: ''};
+    result.label = bot.NAME;
+    Object.entries(bot.STATISTICS).forEach(([key, value]) => result.data.push(value));
+    return result;
+  }
+
+  getWonWithMethods(gameId: number): Observable<WithMethods> {
+    return this.getWithMethods(gameId, this.WON_WITH_METHODS);
+  }
+
+  getLostWithMethods(gameId: number): Observable<WithMethods> {
+    return this.getWithMethods(gameId, this.LOST_WITH_METHODS);
+  }
+
+  private getWithMethods(gameId: number, fileName: string): Observable<WithMethods> {
+    const path = `${ChartService.getStatsPath(gameId)}/${fileName}`;
+    return this.http.get<WithMethods[]>(path)
+      .pipe(concatAll())
+      .pipe(skip(1));
   }
 }

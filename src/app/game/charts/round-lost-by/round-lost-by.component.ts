@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ChartService} from '../chart.service';
 import {ChartDataSets, ChartType, RadialChartOptions} from 'chart.js';
+import {ChartService} from '../chart.service';
 
 @Component({
-  selector: 'app-round-won-by',
-  templateUrl: './round-won-by.component.html',
-  styleUrls: ['./round-won-by.component.scss']
+  selector: 'app-round-lost-by',
+  templateUrl: './round-lost-by.component.html',
+  styleUrls: ['./round-lost-by.component.scss']
 })
-export class RoundWonByComponent implements OnInit {
+export class RoundLostByComponent implements OnInit {
 
   @Input() readonly gameId: number;
 
@@ -23,8 +23,7 @@ export class RoundWonByComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getWonWithMethods(this.gameId)
+    this.service.getLostWithMethods(this.gameId)
       .subscribe(bot => this.chartData.push(this.service.prepareWithMethodChartData(bot)));
   }
-
 }

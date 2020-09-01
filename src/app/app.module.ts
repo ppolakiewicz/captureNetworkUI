@@ -19,6 +19,7 @@ import {MatCardModule} from '@angular/material/card';
 import {HomeComponent} from './home/home.component';
 import {ChartsModule} from 'ng2-charts';
 import { RoundWonByComponent } from './game/charts/round-won-by/round-won-by.component';
+import { RoundLostByComponent } from './game/charts/round-lost-by/round-lost-by.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RoundWonByComponent } from './game/charts/round-won-by/round-won-by.com
     GameComponent,
     GameTableComponent,
     HomeComponent,
-    RoundWonByComponent
+    RoundWonByComponent,
+    RoundLostByComponent
   ],
   imports: [
     BrowserModule,

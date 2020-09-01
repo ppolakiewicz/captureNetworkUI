@@ -8,7 +8,7 @@ export interface Statistics{
   scan: number;
 }
 
-export interface WonWithMethods{
+export interface WithMethods{
   NAME: string;
   STATISTICS: Statistics;
 }
