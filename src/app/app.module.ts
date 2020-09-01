@@ -18,8 +18,9 @@ import {MainMenuComponent} from './main-menu/main-menu.component';
 import {MatCardModule} from '@angular/material/card';
 import {HomeComponent} from './home/home.component';
 import {ChartsModule} from 'ng2-charts';
-import { RoundWonByComponent } from './game/charts/round-won-by/round-won-by.component';
-import { RoundLostByComponent } from './game/charts/round-lost-by/round-lost-by.component';
+import {RoundWonByComponent} from './game/charts/round-won-by/round-won-by.component';
+import {RoundLostByComponent} from './game/charts/round-lost-by/round-lost-by.component';
+import {ScoringProcessComponent} from './game/charts/scoring-process/scoring-process.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RoundLostByComponent } from './game/charts/round-lost-by/round-lost-by.
     GameTableComponent,
     HomeComponent,
     RoundWonByComponent,
-    RoundLostByComponent
+    RoundLostByComponent,
+    ScoringProcessComponent
   ],
   imports: [
     BrowserModule,

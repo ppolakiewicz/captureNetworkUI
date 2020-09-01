@@ -2,7 +2,9 @@
                 [firstBotName]="firstBotName"
                 [secondBotName]="secondBotName">
 </app-game-table>
-
+<div>
+  <app-scoring-process *ngIf="gameHistory" [gameHistory]="gameHistory"></app-scoring-process>
+</div>
 <div class="row">
   <div class="col">
     <app-round-won-by [gameId]="gameId"></app-round-won-by>
