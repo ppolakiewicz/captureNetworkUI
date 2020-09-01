@@ -13,7 +13,7 @@ export class GameService {
   constructor(private readonly httpClient: HttpClient) {
   }
 
-  getGameRounds(gameId: number): Observable<readonly IGameRound[]> {
+  getGameRounds(gameId: number): Observable< IGameRound[]> {
     const path = `${environment.url}/games/${gameId}/game_record.json`;
     return this.httpClient.get<IGameRound[]>(path).pipe(share());
   }

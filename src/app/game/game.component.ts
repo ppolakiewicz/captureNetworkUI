@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {IGameRound} from './interfaces/igame-round';
+import {GameService} from './game.service';
 
 @Component({
   selector: 'app-game',
@@ -8,22 +10,27 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class GameComponent implements OnInit {
 
+  gameId: number;
   firstBotName: string;
   secondBotName: string;
-  gameId: number;
+  gameHistory: IGameRound[];
 
   constructor(private readonly route: ActivatedRoute,
-              private router: Router) {
+              private readonly router: Router,
+              private readonly service: GameService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
-
-    this.route.params.subscribe(params => this.gameId = +params.id);
-
-    this.route.queryParams.subscribe(params => {
-      this.firstBotName = params.bot1;
-      this.secondBotName = params.bot2;
-    });
+    this.route.params.subscribe(
+      params => {
+        this.gameId = params.id;
+        this.service.getGameRounds(this.gameId).subscribe(
+          gameHistory => {
+            this.gameHistory = gameHistory;
+            this.firstBotName = this.gameHistory[0].bot_1.name;
+            this.secondBotName = this.gameHistory[0].bot_2.name;
+          });
+      });
   }
 }
