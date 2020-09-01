@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {ChartData, WithMethods} from './charts.types';
 import {concatAll, skip} from 'rxjs/operators';
+import {IGameRound} from '../interfaces/igame-round';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,15 @@ export class ChartService {
     result.label = bot.NAME;
     Object.entries(bot.STATISTICS).forEach(([key, value]) => result.data.push(value));
     return result;
+  }
+
+  prepareScoringProcessData(gameData: IGameRound[], firstBot: ChartData, secondBot: ChartData, chartLabels: string[]) {
+    let i = 0;
+    gameData.forEach(round => {
+      firstBot.data.push(round.bot_1.points);
+      secondBot.data.push(round.bot_2.points);
+      chartLabels.push(String(++i));
+    });
   }
 
   getWonWithMethods(gameId: number): Observable<WithMethods> {
