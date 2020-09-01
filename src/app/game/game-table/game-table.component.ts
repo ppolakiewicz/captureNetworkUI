@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameTableDataSource} from './game-table.datasource';
-import {GameService} from '../game.service';
+import {IGameRound} from '../interfaces/igame-round';
 
 @Component({
   selector: 'app-game-table',
@@ -9,23 +8,19 @@ import {GameService} from '../game.service';
 })
 export class GameTableComponent implements OnInit {
 
-  @Input()
-  firstBotName: string;
-  @Input()
-  secondBotName: string;
-  @Input()
-  gameId: number;
+  @Input() dataSource: IGameRound[];
+  @Input() firstBotName: string;
+  @Input() secondBotName: string;
 
-  public dataSource: GameTableDataSource;
   public displayedColumns: string[] = [
     'round',
     'firstBot-bot1_points', 'firstBot-bot1_time', 'firstBot-bot1_used',
     'secondBot-bot2_points', 'secondBot-bot2_time', 'secondBot-bot2_used'
   ];
 
-  constructor(private service: GameService) {}
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.dataSource = new GameTableDataSource(this.gameId, this.service);
   }
 }

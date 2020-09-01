@@ -1,16 +1,14 @@
-<app-game-table [gameId]="gameId"
+<app-game-table [dataSource]="gameHistory"
                 [firstBotName]="firstBotName"
                 [secondBotName]="secondBotName">
 </app-game-table>
-<mat-card>
-  <mat-card-content>
-    <div class="row">
-      <div class="col">
-        <app-round-won-by [gameId]="gameId"></app-round-won-by>
-      </div>
-      <div class="col">
-        <app-round-lost-by [gameId]="gameId"></app-round-lost-by>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+
+<div class="row">
+  <div class="col">
+    <app-round-won-by [gameId]="gameId"></app-round-won-by>
+  </div>
+  <div class="col">
+    <app-round-lost-by [gameId]="gameId"></app-round-lost-by>
+  </div>
+</div>
+
